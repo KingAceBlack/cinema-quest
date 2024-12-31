@@ -1,0 +1,19 @@
+language = "nodejs"
+run = "yarn dev"
+entrypoint = "src/app/app.tsx"
+modules = ["nodejs-20"]
+
+[env]
+PATH = "/home/runner/$REPL_SLUG/node_modules/.bin:$PATH"
+
+[nix]
+channel = "stable-22_11"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[deployment]
+deploymentTarget = "cloudrun"
+run = ["sh", "-c", "yarn start"]
+build = ["sh", "-c", "yarn build"]

@@ -34,6 +34,7 @@ export default function Demo(
   const [context, setContext] = useState<FrameContext>();
   const [isContextOpen, setIsContextOpen] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
+  const [amount, setAmount] = useState("");
 
   const [added, setAdded] = useState(false);
   const [notificationDetails, setNotificationDetails] =
@@ -250,6 +251,18 @@ export default function Demo(
       paddingRight: context?.client.safeAreaInsets?.right ?? 0 ,
     }}>
       <div className="w-[300px] mx-auto py-2 px-2">
+        {/* <input
+          className="font-mono text-xs whitespace-pre-wrap break-words overflow-x- p-2 bg-gray-100 dark:bg-gray-800 rounded-lg my-2 mb-4 p-2 border rounded"
+          type="text"
+          value={}
+          onChange={(event) => setMessage(event.target.value)}
+          placeholder="Type something..."
+        /> */}
+        <input
+          className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg my-2"
+          onChange={(event) => setAmount(event.target.value)}
+          />
+        
         <h1 className="text-2xl font-bold text-center mb-4">{title}</h1>
 
         <div className="mb-4">
