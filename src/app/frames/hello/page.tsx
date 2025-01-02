@@ -1,7 +1,9 @@
 import { Metadata } from "next";
 import App from "~/app/app";
 
-const appUrl = process.env.NEXT_PUBLIC_URL;
+// const appUrl = process.env.NEXT_PUBLIC_URL;
+// const appUrl = 'https://9cf4c62f-7bc5-42d6-a3d0-01aeaea50754-00-2obuwftnnc76u.kirk.replit.dev';
+const appUrl = 'https://SouthCastleGives.replit.app';
 
 const frame = {
   version: "next",
@@ -10,7 +12,7 @@ const frame = {
     title: "Launch Frame",
     action: {
       type: "launch_frame",
-      name: "Farcaster Frames v2 Demo",
+      name: "South Castle Gives 🏰",
       url: `${appUrl}/frames/hello/`,
       splashImageUrl: `${appUrl}/splash.png`,
       splashBackgroundColor: "#f7f7f7",
@@ -19,11 +21,11 @@ const frame = {
 };
 
 export const metadata: Metadata = {
-  title: "Hello, world!",
-  description: "A simple hello world frame",
+  title: "South Castle Gives 🏰",
+  description: "South Castle New Year's Charity Drive",
   openGraph: {
-    title: "Hello, world!",
-    description: "A simple hello world frame",
+    title: "South Castle Gives 🏰",
+    description: "South Castle New Year's Charity Drive",
   },
   other: {
     "fc:frame": JSON.stringify(frame),
@@ -31,5 +33,5 @@ export const metadata: Metadata = {
 };
 
 export default function HelloFrame() {
-  return <App title={"Hello, world!"} />;
+  return <App title={"South Castle Gives 🏰"} />;
 }
