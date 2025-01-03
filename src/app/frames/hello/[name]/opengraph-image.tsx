@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "South Castle Gives 🏰";
+export const alt = "South Castle Gives";
 export const size = {
   width: 600,
   height: 400,

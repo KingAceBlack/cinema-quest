@@ -16,24 +16,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const frame = {
     version: "next",
-    imageUrl: `${appUrl}/frames/hello/${name}/opengraph-image`,
+    // imageUrl: `${appUrl}/frames/hello/${name}/opengraph-image`,
+    imageUrl: `${appUrl}/southCastleGives.png`,
     button: {
       title: "Launch Frame",
       action: {
         type: "launch_frame",
-        name: "South Castle Gives 🏰",
+        name: "South Castle Gives",
         url: `${appUrl}/frames/hello/${name}/`,
-        splashImageUrl: `${appUrl}/splash.png`,
+        splashImageUrl: `${appUrl}/splash.jpg`,
         splashBackgroundColor: "#f7f7f7",
       },
     },
   };
 
   return {
-    title: `South Castle Gives 🏰`,
+    title: `South Castle Gives`,
     description: `South Castle New Year's Charity Drive`,
     openGraph: {
-      title: `South Castle Gives 🏰`,
+      title: `South Castle Gives`,
       description: `South Castle New Year's Charity Drive`,
     },
     other: {
@@ -45,5 +46,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HelloNameFrame({ params }: Props) {
   const { name } = await params;
 
-  return <App title={`South Castle Gives 🏰`} />;
+  return <App title={`South Castle Gives`} />;
 }

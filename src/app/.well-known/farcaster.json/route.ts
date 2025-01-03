@@ -18,12 +18,13 @@ export async function GET() {
     frame: {
       version: "1",
       name: "South Castle Gives",
-      iconUrl: `${appUrl}/icon.png`,
+      iconUrl: `${appUrl}/icon.jpg`,
       homeUrl: appUrl,
-      imageUrl: `${appUrl}/frames/hello/opengraph-image`,
+      // imageUrl: `${appUrl}/frames/hello/opengraph-image`,
+      imageUrl: `${appUrl}/southCastleGives.png`,
       buttonTitle: "Launch Frame",
-      splashImageUrl: `${appUrl}/splash.png`,
-      splashBackgroundColor: "#f7f7f7",
+      splashImageUrl: `${appUrl}/splash.jpg`,
+      splashBackgroundColor: "#233D2B",
       webhookUrl: `${appUrl}/api/webhook`,
     },
   };
