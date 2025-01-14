@@ -7,16 +7,15 @@ const appUrl = 'https://SouthCastleGives.replit.app';
 
 const frame = {
   version: "next",
-  // imageUrl: `${appUrl}/splash.jpg`,
-  imageUrl: `${appUrl}/southCastleGives.png`,
+  imageUrl: `${appUrl}/crossedSwords.png`,
   button: {
     title: "Launch Frame",
     action: {
       type: "launch_frame",
-      name: "South Castle Gives",
+      name: "kb test",
       url: appUrl,
-      splashImageUrl: `${appUrl}/splash.jpg`,
-      splashBackgroundColor: "#f7f7f7",
+      splashImageUrl: `${appUrl}/crossedSwordsLogo.png`,
+      splashBackgroundColor: "#EAE3C8",
     },
   },
 };
@@ -25,10 +24,10 @@ export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "South Castle Gives",
+    title: "kb test",
     openGraph: {
-      title: "South Castle Gives",
-      description: "South Castle New Year's Charity Drive",
+      title: "kb test",
+      description: "kb test",
     },
     other: {
       "fc:frame": JSON.stringify(frame),

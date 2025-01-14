@@ -28,3 +28,12 @@ body {
 *::-webkit-scrollbar {
   display: none;
 }
+
+iframe {
+    position: fixed; /* Stay in place while scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    border: none; /* Remove border */
+}

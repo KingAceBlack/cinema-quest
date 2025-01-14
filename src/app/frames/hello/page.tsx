@@ -7,26 +7,25 @@ const appUrl = 'https://SouthCastleGives.replit.app';
 
 const frame = {
   version: "next",
-  // imageUrl: `${appUrl}/frames/hello/opengraph-image`,
-  imageUrl: `${appUrl}/southCastleGives.png`,
+  imageUrl: `${appUrl}/crossedSwords.png`,
   button: {
     title: "Launch Frame",
     action: {
       type: "launch_frame",
-      name: "South Castle Gives",
-      url: `${appUrl}/frames/hello/`,
-      splashImageUrl: `${appUrl}/splash.jpg`,
-      splashBackgroundColor: "#f7f7f7",
+      name: "kb test",
+      url: `${appUrl}`,
+      splashImageUrl: `${appUrl}/crossedSwordsLogo.png`,
+      splashBackgroundColor: "#EAE3C8",
     },
   },
 };
 
 export const metadata: Metadata = {
-  title: "South Castle Gives",
-  description: "South Castle New Year's Charity Drive",
+  title: "kb test",
+  description: "kb test",
   openGraph: {
-    title: "South Castle Gives",
-    description: "South Castle New Year's Charity Drive",
+    title: "kb test",
+    description: "kb test",
   },
   other: {
     "fc:frame": JSON.stringify(frame),
@@ -34,5 +33,5 @@ export const metadata: Metadata = {
 };
 
 export default function HelloFrame() {
-  return <App title={"South Castle Gives"} />;
+  return <App title={"kb test"} />;
 }

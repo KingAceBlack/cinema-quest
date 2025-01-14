@@ -15,19 +15,37 @@ export async function GET() {
       "payload": "eyJkb21haW4iOiJzb3V0aGNhc3RsZWdpdmVzLnJlcGxpdC5hcHAifQ",
       "signature": "MHhiNWZlNzI1ZDdmYTljNmIzNDg2NjA4ZWY4NTUzN2NjM2Q4NmM5ZDg3YWYxZDJiMmEzOGY0YzVlY2UyNzBiNTY0NmRlNGIwMmFmMjYyZTc3YTAyMTdjZDA5MThjMjU1ZjE0Y2M2ZGU2YTUwYmNiZDU4MTczYjMxZTg4OTlhMDg1NzFj"
     },
-    frame: {
-      version: "1",
-      name: "South Castle Gives",
-      iconUrl: `${appUrl}/icon.jpg`,
-      homeUrl: appUrl,
-      // imageUrl: `${appUrl}/frames/hello/opengraph-image`,
-      imageUrl: `${appUrl}/southCastleGives.png`,
-      buttonTitle: "Launch Frame",
-      splashImageUrl: `${appUrl}/splash.jpg`,
-      splashBackgroundColor: "#233D2B",
-      webhookUrl: `${appUrl}/api/webhook`,
-    },
+    "frame": {
+      "version": "1",
+      "name": "kb test",
+      "iconUrl": `${appUrl}/crossedSwordsLogo.png`,
+      "homeUrl": appUrl,
+      "imageUrl": `${appUrl}/crossedSwords.png`,
+      "buttonTitle": "Launch Frame",
+      "splashImageUrl": `${appUrl}/crossedSwordsLogo.png`,
+      "splashBackgroundColor": "#EAE3C8",
+      "webhookUrl": `${appUrl}/api/webhook`
+    }
   };
 
   return Response.json(config);
 }
+
+// {
+//   "accountAssociation": {
+//     "header": "eyJmaWQiOjIxMzEwMywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEVhQTJGOGIwOTEzNTI3ZDYyNzE5MTVkNzQ1MDdlMDdFNmUzMjRmNDAifQ",
+//     "payload": "eyJkb21haW4iOiJzb3V0aGNhc3RsZWdpdmVzLnJlcGxpdC5hcHAifQ",
+//     "signature": "MHhiNWZlNzI1ZDdmYTljNmIzNDg2NjA4ZWY4NTUzN2NjM2Q4NmM5ZDg3YWYxZDJiMmEzOGY0YzVlY2UyNzBiNTY0NmRlNGIwMmFmMjYyZTc3YTAyMTdjZDA5MThjMjU1ZjE0Y2M2ZGU2YTUwYmNiZDU4MTczYjMxZTg4OTlhMDg1NzFj"
+//   },
+//   "frame": {
+//     "version": "1",
+//     "name": "South Castle Gives",
+//     "iconUrl": "https://SouthCastleGives.replit.app/icon.jpg",
+//     "homeUrl": "https://SouthCastleGives.replit.app",
+//     "imageUrl": "https://SouthCastleGives.replit.app/scgWithSubtext.png",
+//     "buttonTitle": "Launch Frame",
+//     "splashImageUrl": "https://SouthCastleGives.replit.app/splash.jpg",
+//     "splashBackgroundColor": "#233D2B",
+//     "webhookUrl": "https://SouthCastleGives.replit.app/api/webhook",
+//   },
+// }
