@@ -7,11 +7,11 @@ const client = new MongoClient(uri);
 
 export async function POST(request: Request) {
   try {
-    const { timestamp, fid, chain, amount } = await request.json();
+    const { url } = await request.json();
     await client.connect();
     const db = client.db();
 
-    const result = await db.collection('scg1').insertOne({ timestamp, fid, chain, amount });
+    const result = await db.collection('kb1').insertOne({ url });
 
     return NextResponse.json({ success: true });
   } catch (error) {

@@ -252,14 +252,14 @@ export default function Demo(
     }
   }, [isSDKLoaded]);
 
-  const saveDonationReceipt = async (timestamp: number, fid: number, chain: string, amount: string) => {
+  const saveDonationReceipt = async (url: string) => {
     console.log('in func')
-    let res = await fetch('/api/donation', {
+    let res = await fetch('/api/setUrl', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ timestamp, fid, chain, amount }),
+      body: JSON.stringify({ url }),
     });
     console.log(res)
   };
