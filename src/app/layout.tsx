@@ -5,8 +5,8 @@ import "~/app/globals.css";
 import { Providers } from "~/app/providers";
 
 export const metadata: Metadata = {
-  title: "South Castle Gives",
-  description: "South Castle New Year's Charity Drive",
+  title: "kb test",
+  description: "kb test",
 };
 
 export default async function RootLayout({

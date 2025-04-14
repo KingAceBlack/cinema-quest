@@ -43,6 +43,7 @@ export default function Demo(
   const [ethPrice, setEthPrice] = useState();
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationMade, setDonationMade] = useState(false);
+  const [url, setUrl] = useState();
 
   const [added, setAdded] = useState(false);
     useState<FrameNotificationDetails | null>(null);
@@ -57,7 +58,7 @@ export default function Demo(
     'mainnet': 'https://etherscan.io/tx/'
   }
   const { address, isConnected } = useAccount();
-  const chainId = useChainId();
+  // const chainId = useChainId();
 
   const {
     sendTransaction,
@@ -88,154 +89,160 @@ export default function Demo(
     isPending: isSwitchChainPending,
   } = useSwitchChain();
 
-  const handleSwitchChain = useCallback(() => {
-    switchChain({ chainId: chainId === base.id ? optimism.id : base.id });
-  }, [switchChain, chainId]);
-
-  const switchToBase = () => {
-    switchChain({ chainId: base.id });
-  };
-  
-  const switchToMainnet = () => {
-    switchChain({ chainId: mainnet.id });
-  };
-  
-  const switchToOptimism = () => {
-    switchChain({ chainId: optimism.id });
-  };
-
-  const switchToPolygon = () => {
-    switchChain({ chainId: polygon.id });
-  };
-
-  const switchToArbitrum = () => {
-    switchChain({ chainId: arbitrum.id });
-  };
-
-  const switchToDegen = () => {
-    switchChain({ chainId: degen.id });
-  };
-
-  const getEndaomentTxDetails = async (chainId: any, amount: any, tokenAddress = null) => {
-    try {
-      const response = await fetch(
-        `https://api.endaoment.org/v1/sdk/donations/swap?id=d937a50f-336b-4f0a-8143-7b47b03d0988&chainId=${chainId}&amountIn=${amount}`,
-        {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          },
-        }
-      );
-
-      if (!response.ok) {
-        console.error(`HTTP error! status: ${response.status}`);
-        setLogger(response)
-      }
-
-      const data = await response.json();
-
-      return data;
-    } catch (e) {
-      return null;
+  useEffect(() => {
+    async function func() {
+      const res = await fetch(`https://kbtestframe.replit.app/api/getUrl`);
+      const data = await res.json();
+      console.log('iframe url', data.url)
+      setUrl(data.url);
     }
-  }
 
-  const donate = async () => {
-    if(!donationInProgress) {
-      setDonationInProgress(true);
-      let chainId;
-      let tokenAddress;
-      console.log('selectedChain', selectedChain)
-      switch (selectedChain) {
-          case 'mainnet':
-            await switchToMainnet();
-            chainId = mainnet.id;
-            break;
-  
-          case 'base':
-            console.log('in base case', selectedChain)
-            chainId = base.id;
-            await switchToBase();
-            break;
-  
-          case 'optimism':
-            await switchToOptimism();
-            chainId = optimism.id;
-            break;
-  
-          case 'arbitrum':
-            await switchToArbitrum();
-            chainId = arbitrum.id;
-            break;
-  
-          case 'polygon':
-            await switchToPolygon();
-            chainId = polygon.id;
-            break;
-      }
-      // let amount = parseEther(amount.toString());
-      
-      const txDetails = await getEndaomentTxDetails(chainId, parseEther(amount.toString()), tokenAddress)
-      txDetails.chainId = chainId;
-  
-      sendDonationTx(txDetails);
-      
-      console.log('tx details', txDetails)
-      setLogger(txDetails)
-    }
-  }
+    func();
+  }, [])
 
-  const sendDonationTx = async (details) => {
-    sendTransaction(
-      details,
-      {
-        onSuccess: async (hash) => {
-          const fid = context.user.fid ? context.user.fid : "";
-          const timestamp = Date.now();
-          await saveDonationReceipt(timestamp, fid, selectedChain, amount.toString());
-          setDonationInProgress(false);
-          setTxHash(hash);
-          setDonationMade(true);
-        },
-        onError: (error) => {
-          setDonationInProgress(false);
-        }
-      }
-    );
-  };
+  // const handleSwitchChain = useCallback(() => {
+  //   switchChain({ chainId: chainId === base.id ? optimism.id : base.id });
+  // }, [switchChain, chainId]);
+
+  // const switchToBase = () => {
+  //   switchChain({ chainId: base.id });
+  // };
+  
+  // const switchToMainnet = () => {
+  //   switchChain({ chainId: mainnet.id });
+  // };
+  
+  // const switchToOptimism = () => {
+  //   switchChain({ chainId: optimism.id });
+  // };
+
+  // const switchToPolygon = () => {
+  //   switchChain({ chainId: polygon.id });
+  // };
+
+  // const switchToArbitrum = () => {
+  //   switchChain({ chainId: arbitrum.id });
+  // };
+
+  // const switchToDegen = () => {
+  //   switchChain({ chainId: degen.id });
+  // };
+
+  // const getEndaomentTxDetails = async (chainId: any, amount: any, tokenAddress = null) => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.endaoment.org/v1/sdk/donations/swap?id=d937a50f-336b-4f0a-8143-7b47b03d0988&chainId=${chainId}&amountIn=${amount}`,
+  //       {
+  //         method: 'GET',
+  //         headers: {
+  //           'Accept': 'application/json',
+  //         },
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       console.error(`HTTP error! status: ${response.status}`);
+  //       setLogger(response)
+  //     }
+
+  //     const data = await response.json();
+
+  //     return data;
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
+
+  // const donate = async () => {
+  //   if(!donationInProgress) {
+  //     setDonationInProgress(true);
+  //     let chainId;
+  //     let tokenAddress;
+  //     console.log('selectedChain', selectedChain)
+  //     switch (selectedChain) {
+  //         case 'mainnet':
+  //           await switchToMainnet();
+  //           chainId = mainnet.id;
+  //           break;
+  
+  //         case 'base':
+  //           console.log('in base case', selectedChain)
+  //           chainId = base.id;
+  //           await switchToBase();
+  //           break;
+  
+  //         case 'optimism':
+  //           await switchToOptimism();
+  //           chainId = optimism.id;
+  //           break;
+  
+  //         case 'arbitrum':
+  //           await switchToArbitrum();
+  //           chainId = arbitrum.id;
+  //           break;
+  
+  //         case 'polygon':
+  //           await switchToPolygon();
+  //           chainId = polygon.id;
+  //           break;
+  //     }
+  //     // let amount = parseEther(amount.toString());
+      
+  //     const txDetails = await getEndaomentTxDetails(chainId, parseEther(amount.toString()), tokenAddress)
+  //     txDetails.chainId = chainId;
+  
+  //     sendDonationTx(txDetails);
+      
+  //     console.log('tx details', txDetails)
+  //     setLogger(txDetails)
+  //   }
+  // }
+
+  // const sendDonationTx = async (details) => {
+  //   sendTransaction(
+  //     details,
+  //     {
+  //       onSuccess: async (hash) => {
+  //         const fid = context.user.fid ? context.user.fid : "";
+  //         const timestamp = Date.now();
+  //         await saveDonationReceipt(timestamp, fid, selectedChain, amount.toString());
+  //         setDonationInProgress(false);
+  //         setTxHash(hash);
+  //         setDonationMade(true);
+  //       },
+  //       onError: (error) => {
+  //         setDonationInProgress(false);
+  //       }
+  //     }
+  //   );
+  // };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setAppUrl(window.location.origin); // Get the base URL
     }
     
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
-    .then(response => {
-      if (!response.ok) {
-        console.error(`HTTP error! status: ${response.status}`);
-      }
-      response?.json()
-      .then(res => {
-        console.log(`Ethereum price in USD: ${res?.ethereum?.usd}`);
-        setEthPrice(res?.ethereum?.usd);
-      })
-    })
-    .catch(error => {
-      console.error('Error fetching Ethereum price:', error);
-    });
   }, [])
 
-  const openCast = () => {
-    sdk.actions.openUrl(`https://warpcast.com/~/compose?text=I%20just%20donated%20to%20South%20Castle%27s%20New%20Year%20charity%20drive%20supporting%20GiveDirectly%21%0A%0ACheck%20out%20the%20frame%20below%20if%20you%27d%20like%20to%20make%20a%20contribution%20to%20support%20this%20great%20cause%0A%0A%F0%9F%8F%B0%20%21attack%20north%20%26%20Happy%20New%20Year%21%20%F0%9F%8F%B0
-    &embeds[]=${appUrl}`)
-  }
+  // const openCast = () => {
+  //   sdk.actions.openUrl(`https://warpcast.com/~/compose?text=I%20just%20donated%20to%20South%20Castle%27s%20New%20Year%20charity%20drive%20supporting%20GiveDirectly%21%0A%0ACheck%20out%20the%20frame%20below%20if%20you%27d%20like%20to%20make%20a%20contribution%20to%20support%20this%20great%20cause%0A%0A%F0%9F%8F%B0%20%21attack%20north%20%26%20Happy%20New%20Year%21%20%F0%9F%8F%B0
+  //   &embeds[]=${appUrl}`)
+  // }
 
   useEffect(() => {
     const load = async () => {
       const context = await sdk.context;
       setContext(context);
-      console.log('context', context)
+      console.log('context', context);
+
+      // 📝 Save to localStorage
+      const fid = context?.user?.fid;
+      const username = context?.user?.username;
+
+      if (typeof window !== 'undefined' && fid && username) {
+        localStorage.setItem(fid.toString(), username);
+        console.log(`Stored in localStorage: ${fid} => ${username}`);
+      }
 
       sdk.on("primaryButtonClicked", () => {
         console.log("primaryButtonClicked");
@@ -252,17 +259,17 @@ export default function Demo(
     }
   }, [isSDKLoaded]);
 
-  const saveDonationReceipt = async (url: string) => {
-    console.log('in func')
-    let res = await fetch('/api/setUrl', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ url }),
-    });
-    console.log(res)
-  };
+  // const saveDonationReceipt = async (url: string) => {
+  //   console.log('in func')
+  //   let res = await fetch('/api/setUrl', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ url }),
+  //   });
+  //   console.log(res)
+  // };
 
   
   const close = useCallback(() => {
@@ -284,7 +291,7 @@ export default function Demo(
       paddingLeft: context?.client.safeAreaInsets?.left ?? 0,
       paddingRight: context?.client.safeAreaInsets?.right ?? 0 ,
     }}>
-      <iframe src="https://www.wikipedia.org/"></iframe>
+      <iframe src={url ?? "https://lutte-caster.vercel.app/"}></iframe>
     </div>
   );
 }
