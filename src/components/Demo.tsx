@@ -107,11 +107,11 @@ export default function Demo(
   // const switchToBase = () => {
   //   switchChain({ chainId: base.id });
   // };
-  
+
   // const switchToMainnet = () => {
   //   switchChain({ chainId: mainnet.id });
   // };
-  
+
   // const switchToOptimism = () => {
   //   switchChain({ chainId: optimism.id });
   // };
@@ -164,35 +164,35 @@ export default function Demo(
   //           await switchToMainnet();
   //           chainId = mainnet.id;
   //           break;
-  
+
   //         case 'base':
   //           console.log('in base case', selectedChain)
   //           chainId = base.id;
   //           await switchToBase();
   //           break;
-  
+
   //         case 'optimism':
   //           await switchToOptimism();
   //           chainId = optimism.id;
   //           break;
-  
+
   //         case 'arbitrum':
   //           await switchToArbitrum();
   //           chainId = arbitrum.id;
   //           break;
-  
+
   //         case 'polygon':
   //           await switchToPolygon();
   //           chainId = polygon.id;
   //           break;
   //     }
   //     // let amount = parseEther(amount.toString());
-      
+
   //     const txDetails = await getEndaomentTxDetails(chainId, parseEther(amount.toString()), tokenAddress)
   //     txDetails.chainId = chainId;
-  
+
   //     sendDonationTx(txDetails);
-      
+
   //     console.log('tx details', txDetails)
   //     setLogger(txDetails)
   //   }
@@ -221,7 +221,7 @@ export default function Demo(
     if (typeof window !== 'undefined') {
       setAppUrl(window.location.origin); // Get the base URL
     }
-    
+
   }, [])
 
   // const openCast = () => {
@@ -231,45 +231,47 @@ export default function Demo(
 
   useEffect(() => {
     const load = async () => {
-      const context = await sdk.context;
-      setContext(context);
-      console.log('context', context);
-      
-      // Post FID to iframe
-      const iframe = document.querySelector('iframe');
-      if (iframe && context?.user?.fid) {
-        const post = () => {
-          iframe.contentWindow?.postMessage({ fid: context.user.fid }, '*');
-        };
+      try {
+        const ctx = await sdk.context;
+        setContext(ctx);
+        console.log('context', ctx);
 
-        if (iframe.contentWindow && iframe.contentDocument?.readyState === 'complete') {
-          post();
-        } else {
-          iframe.onload = post;
+        // Post FID to iframe
+        const iframe = document.querySelector('iframe');
+        if (iframe && ctx?.user?.fid) {
+          const post = () => {
+            iframe.contentWindow?.postMessage({ fid: ctx.user.fid }, '*');
+          };
+
+          if (iframe.contentWindow && iframe.contentDocument?.readyState === 'complete') {
+            post();
+          } else {
+            iframe.onload = post;
+          }
         }
+
+        // 📝 Save to localStorage
+        const fid = ctx?.user?.fid;
+        const username = ctx?.user?.username;
+
+        if (typeof window !== 'undefined' && fid && username) {
+          localStorage.setItem(fid.toString(), username);
+          console.log(`Stored in localStorage: ${fid} => ${username}`);
+        }
+
+        sdk.on("primaryButtonClicked", () => {
+          console.log("primaryButtonClicked");
+        });
+
+        await sdk.actions.ready({});
+        setIsSDKLoaded(true);
+      } catch (error) {
+        console.error('Failed to initialize Farcaster SDK:', error);
       }
-
-      // 📝 Save to localStorage
-      const fid = context?.user?.fid;
-      const username = context?.user?.username;
-
-      if (typeof window !== 'undefined' && fid && username) {
-        localStorage.setItem(fid.toString(), username);
-        console.log(`Stored in localStorage: ${fid} => ${username}`);
-      }
-
-      sdk.on("primaryButtonClicked", () => {
-        console.log("primaryButtonClicked");
-      });
-
-      sdk.actions.ready({});
     };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
+
+    if (!isSDKLoaded) {
       load();
-      return () => {
-        sdk.removeAllListeners();
-      };
     }
   }, [isSDKLoaded]);
 
@@ -285,7 +287,7 @@ export default function Demo(
   //   console.log(res)
   // };
 
-  
+
   const close = useCallback(() => {
     sdk.actions.close();
   }, []);
@@ -306,7 +308,7 @@ export default function Demo(
       paddingRight: context?.client.safeAreaInsets?.right ?? 0 ,
     }}>
       <iframe src={url ?? `https://lutte-caster.vercel.app/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}></iframe>
-      
+
     </div>
   );
 }
