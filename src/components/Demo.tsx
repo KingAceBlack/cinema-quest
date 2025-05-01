@@ -89,16 +89,16 @@ export default function Demo(
     isPending: isSwitchChainPending,
   } = useSwitchChain();
 
-  useEffect(() => {
-    async function func() {
-      const res = await fetch(`https://kbtestframe.replit.app/api/getUrl`);
-      const data = await res.json();
-      console.log('iframe url', data.url)
-      setUrl(data.url);
-    }
+  // useEffect(() => {
+  //   async function func() {
+  //     const res = await fetch(`https://kbtestframe.replit.app/api/getUrl`);
+  //     const data = await res.json();
+  //     console.log('iframe url', data.url)
+  //     setUrl(data.url);
+  //   }
 
-    func();
-  }, [])
+  //   func();
+  // }, [])
 
   // const handleSwitchChain = useCallback(() => {
   //   switchChain({ chainId: chainId === base.id ? optimism.id : base.id });
@@ -234,6 +234,20 @@ export default function Demo(
       const context = await sdk.context;
       setContext(context);
       console.log('context', context);
+      
+      // Post FID to iframe
+      const iframe = document.querySelector('iframe');
+      if (iframe && context?.user?.fid) {
+        const post = () => {
+          iframe.contentWindow?.postMessage({ fid: context.user.fid }, '*');
+        };
+
+        if (iframe.contentWindow && iframe.contentDocument?.readyState === 'complete') {
+          post();
+        } else {
+          iframe.onload = post;
+        }
+      }
 
       // 📝 Save to localStorage
       const fid = context?.user?.fid;
@@ -291,7 +305,8 @@ export default function Demo(
       paddingLeft: context?.client.safeAreaInsets?.left ?? 0,
       paddingRight: context?.client.safeAreaInsets?.right ?? 0 ,
     }}>
-      <iframe src={url ?? "https://lutte-caster.vercel.app/"}></iframe>
+      <iframe src={url ?? `https://lutte-caster.vercel.app/fid=${context?.user?.fid ?? ''}`}></iframe>
+      
     </div>
   );
 }
