@@ -305,7 +305,7 @@ export default function Demo(
       paddingLeft: context?.client.safeAreaInsets?.left ?? 0,
       paddingRight: context?.client.safeAreaInsets?.right ?? 0 ,
     }}>
-      <iframe src={url ?? `https://lutte-caster.vercel.app/fid=${context?.user?.fid ?? ''}`}></iframe>
+      <iframe src={url ?? `https://lutte-caster.vercel.app/?fid=${context?.user?.fid ?? ''}`}></iframe>
       
     </div>
   );
