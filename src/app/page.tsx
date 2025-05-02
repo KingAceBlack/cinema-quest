@@ -24,6 +24,7 @@ export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    metadataBase: new URL('https://kbtestframe.replit.app'),
     title: "kb test",
     openGraph: {
       title: "kb test",
