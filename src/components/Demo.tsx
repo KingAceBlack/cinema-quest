@@ -30,7 +30,7 @@ import { BaseError, UserRejectedRequestError, parseEther } from "viem";
 
 
 export default function Demo(
-  { title }: { title?: string } = { title: "kb test" }
+  { title }: { title?: string } = { title: "Fell the Dragon" }
 ) {
   const [appUrl, setAppUrl] = useState('');
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
@@ -107,11 +107,11 @@ export default function Demo(
   // const switchToBase = () => {
   //   switchChain({ chainId: base.id });
   // };
-
+  
   // const switchToMainnet = () => {
   //   switchChain({ chainId: mainnet.id });
   // };
-
+  
   // const switchToOptimism = () => {
   //   switchChain({ chainId: optimism.id });
   // };
@@ -164,35 +164,35 @@ export default function Demo(
   //           await switchToMainnet();
   //           chainId = mainnet.id;
   //           break;
-
+  
   //         case 'base':
   //           console.log('in base case', selectedChain)
   //           chainId = base.id;
   //           await switchToBase();
   //           break;
-
+  
   //         case 'optimism':
   //           await switchToOptimism();
   //           chainId = optimism.id;
   //           break;
-
+  
   //         case 'arbitrum':
   //           await switchToArbitrum();
   //           chainId = arbitrum.id;
   //           break;
-
+  
   //         case 'polygon':
   //           await switchToPolygon();
   //           chainId = polygon.id;
   //           break;
   //     }
   //     // let amount = parseEther(amount.toString());
-
+      
   //     const txDetails = await getEndaomentTxDetails(chainId, parseEther(amount.toString()), tokenAddress)
   //     txDetails.chainId = chainId;
-
+  
   //     sendDonationTx(txDetails);
-
+      
   //     console.log('tx details', txDetails)
   //     setLogger(txDetails)
   //   }
@@ -221,7 +221,7 @@ export default function Demo(
     if (typeof window !== 'undefined') {
       setAppUrl(window.location.origin); // Get the base URL
     }
-
+    
   }, [])
 
   // const openCast = () => {
@@ -231,47 +231,45 @@ export default function Demo(
 
   useEffect(() => {
     const load = async () => {
-      try {
-        const ctx = await sdk.context;
-        setContext(ctx);
-        console.log('context', ctx);
+      const context = await sdk.context;
+      setContext(context);
+      console.log('context', context);
+      
+      // Post FID to iframe
+      const iframe = document.querySelector('iframe');
+      if (iframe && context?.user?.fid) {
+        const post = () => {
+          iframe.contentWindow?.postMessage({ fid: context.user.fid }, '*');
+        };
 
-        // Post FID to iframe
-        const iframe = document.querySelector('iframe');
-        if (iframe && ctx?.user?.fid) {
-          const post = () => {
-            iframe.contentWindow?.postMessage({ fid: ctx.user.fid }, '*');
-          };
-
-          if (iframe.contentWindow && iframe.contentDocument?.readyState === 'complete') {
-            post();
-          } else {
-            iframe.onload = post;
-          }
+        if (iframe.contentWindow && iframe.contentDocument?.readyState === 'complete') {
+          post();
+        } else {
+          iframe.onload = post;
         }
-
-        // 📝 Save to localStorage
-        const fid = ctx?.user?.fid;
-        const username = ctx?.user?.username;
-
-        if (typeof window !== 'undefined' && fid && username) {
-          localStorage.setItem(fid.toString(), username);
-          console.log(`Stored in localStorage: ${fid} => ${username}`);
-        }
-
-        sdk.on("primaryButtonClicked", () => {
-          console.log("primaryButtonClicked");
-        });
-
-        await sdk.actions.ready({});
-        setIsSDKLoaded(true);
-      } catch (error) {
-        console.error('Failed to initialize Farcaster SDK:', error);
       }
-    };
 
-    if (!isSDKLoaded) {
+      // 📝 Save to localStorage
+      const fid = context?.user?.fid;
+      const username = context?.user?.username;
+
+      if (typeof window !== 'undefined' && fid && username) {
+        localStorage.setItem(fid.toString(), username);
+        console.log(`Stored in localStorage: ${fid} => ${username}`);
+      }
+
+      sdk.on("primaryButtonClicked", () => {
+        console.log("primaryButtonClicked");
+      });
+
+      sdk.actions.ready({});
+    };
+    if (sdk && !isSDKLoaded) {
+      setIsSDKLoaded(true);
       load();
+      return () => {
+        sdk.removeAllListeners();
+      };
     }
   }, [isSDKLoaded]);
 
@@ -287,7 +285,7 @@ export default function Demo(
   //   console.log(res)
   // };
 
-
+  
   const close = useCallback(() => {
     sdk.actions.close();
   }, []);
@@ -302,13 +300,19 @@ export default function Demo(
 
   return (
     <div style={{ 
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
       paddingTop: context?.client.safeAreaInsets?.top ?? 0, 
       paddingBottom: context?.client.safeAreaInsets?.bottom ?? 0,
       paddingLeft: context?.client.safeAreaInsets?.left ?? 0,
-      paddingRight: context?.client.safeAreaInsets?.right ?? 0 ,
+      paddingRight: context?.client.safeAreaInsets?.right ?? 0
     }}>
-      <iframe src={url ?? `https://lutte-caster.vercel.app/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}></iframe>
-
+      {/* <iframe src="https://lutte-caxster.vercel.app" */}
+      <iframe src={url ?? `https://lutte-caster.vercel.app/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}
+        style={{ width: '100%', height: '100vh', border: 'none', display: 'block' }}
+        allow="fullscreen"></iframe>
+      
     </div>
   );
 }

@@ -17,11 +17,11 @@ export async function GET() {
     },
     "frame": {
       "version": "1",
-      "name": "kb test",
+      "name": "Fell the Dragon",
       "iconUrl": `${appUrl}/crossedSwordsLogo.png`,
       "homeUrl": appUrl,
       "imageUrl": `${appUrl}/crossedSwords.png`,
-      "buttonTitle": "Launch Frame",
+      "buttonTitle": "Play",
       "splashImageUrl": `${appUrl}/crossedSwordsLogo.png`,
       "splashBackgroundColor": "#EAE3C8",
       "webhookUrl": `${appUrl}/api/webhook`
