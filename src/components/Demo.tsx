@@ -107,11 +107,11 @@ export default function Demo(
   // const switchToBase = () => {
   //   switchChain({ chainId: base.id });
   // };
-  
+
   // const switchToMainnet = () => {
   //   switchChain({ chainId: mainnet.id });
   // };
-  
+
   // const switchToOptimism = () => {
   //   switchChain({ chainId: optimism.id });
   // };
@@ -164,35 +164,35 @@ export default function Demo(
   //           await switchToMainnet();
   //           chainId = mainnet.id;
   //           break;
-  
+
   //         case 'base':
   //           console.log('in base case', selectedChain)
   //           chainId = base.id;
   //           await switchToBase();
   //           break;
-  
+
   //         case 'optimism':
   //           await switchToOptimism();
   //           chainId = optimism.id;
   //           break;
-  
+
   //         case 'arbitrum':
   //           await switchToArbitrum();
   //           chainId = arbitrum.id;
   //           break;
-  
+
   //         case 'polygon':
   //           await switchToPolygon();
   //           chainId = polygon.id;
   //           break;
   //     }
   //     // let amount = parseEther(amount.toString());
-      
+
   //     const txDetails = await getEndaomentTxDetails(chainId, parseEther(amount.toString()), tokenAddress)
   //     txDetails.chainId = chainId;
-  
+
   //     sendDonationTx(txDetails);
-      
+
   //     console.log('tx details', txDetails)
   //     setLogger(txDetails)
   //   }
@@ -221,7 +221,7 @@ export default function Demo(
     if (typeof window !== 'undefined') {
       setAppUrl(window.location.origin); // Get the base URL
     }
-    
+
   }, [])
 
   // const openCast = () => {
@@ -234,7 +234,7 @@ export default function Demo(
       const context = await sdk.context;
       setContext(context);
       console.log('context', context);
-      
+
       // Post FID to iframe
       const iframe = document.querySelector('iframe');
       if (iframe && context?.user?.fid) {
@@ -285,7 +285,7 @@ export default function Demo(
   //   console.log(res)
   // };
 
-  
+
   const close = useCallback(() => {
     sdk.actions.close();
   }, []);
@@ -303,19 +303,20 @@ export default function Demo(
       position: 'fixed',
       top: 0,
       left: 0,
+      right: 0,
+      bottom: 0,
       width: '100%',
-      height: '100vh',
+      height: '100%',
       overflow: 'hidden',
       paddingTop: context?.client.safeAreaInsets?.top ?? 0, 
       paddingBottom: context?.client.safeAreaInsets?.bottom ?? 0,
       paddingLeft: context?.client.safeAreaInsets?.left ?? 0,
       paddingRight: context?.client.safeAreaInsets?.right ?? 0
     }}>
-      {/* <iframe src="https://lutte-caxster.vercel.app" */}
       <iframe src={url ?? `https://lutte-caster.vercel.app/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}
-        style={{ width: '100%', height: '100vh', border: 'none', display: 'block' }}
+        style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
         allow="fullscreen"></iframe>
-      
+
     </div>
   );
 }
