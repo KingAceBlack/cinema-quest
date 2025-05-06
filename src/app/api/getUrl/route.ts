@@ -6,7 +6,17 @@ if (!uri) {
   throw new Error('MONGODB_URI is not defined in environment variables');
 }
 
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, {
+  ssl: true,
+  tls: true,
+  tlsAllowInvalidCertificates: true,
+  serverApi: {
+    version: '1',
+    strict: true,
+    deprecationErrors: true
+  },
+  directConnection: true
+});
 let isConnected = false;
 
 export async function GET() {

@@ -15,7 +15,8 @@ const client = new MongoClient(uri, {
     version: '1',
     strict: true,
     deprecationErrors: true
-  }
+  },
+  directConnection: true
 });
 let isConnected = false;
 
