@@ -7,7 +7,16 @@ if (!uri) {
   throw new Error('MONGODB_URI is not defined in environment variables');
 }
 
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, {
+  ssl: true,
+  tls: true,
+  tlsAllowInvalidCertificates: true,
+  serverApi: {
+    version: '1',
+    strict: true,
+    deprecationErrors: true
+  }
+});
 let isConnected = false;
 
 export async function POST(request: Request) {
@@ -23,7 +32,16 @@ export async function POST(request: Request) {
 
     if (!isConnected) {
       console.log('Connecting to MongoDB...');
-      await client.connect();
+      await client.connect({
+        ssl: true,
+        tls: true,
+        tlsAllowInvalidCertificates: true,
+        serverApi: {
+          version: '1',
+          strict: true,
+          deprecationErrors: true
+        }
+      });
       isConnected = true;
       console.log('Connected to MongoDB successfully');
     }
