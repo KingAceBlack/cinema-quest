@@ -261,13 +261,25 @@ export default function Demo(
         }
       }
 
-      // 📝 Save to localStorage
+      // 📝 Save to localStorage and MongoDB
       const fid = context?.user?.fid;
       const username = context?.user?.username;
 
       if (typeof window !== 'undefined' && fid && username) {
         localStorage.setItem(fid.toString(), username);
         console.log(`Stored in localStorage: ${fid} => ${username}`);
+        
+        // Log to MongoDB
+        fetch('/api/logUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ fid, username }),
+        })
+        .then(response => response.json())
+        .then(data => console.log('Logged to MongoDB:', data))
+        .catch(error => console.error('Error logging to MongoDB:', error));
       }
 
       sdk.on("primaryButtonClicked", () => {
