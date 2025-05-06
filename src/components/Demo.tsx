@@ -286,7 +286,9 @@ export default function Demo(
         console.log("primaryButtonClicked");
       });
 
+      console.log('Calling sdk.actions.ready()...');
       sdk.actions.ready({});
+      console.log('sdk.actions.ready() called successfully');
     };
     if (sdk && !isSDKLoaded) {
       setIsSDKLoaded(true);
