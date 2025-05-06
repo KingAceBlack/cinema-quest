@@ -89,6 +89,18 @@ export default function Demo(
     isPending: isSwitchChainPending,
   } = useSwitchChain();
 
+  useEffect(() => {
+    const iframe = document.querySelector('iframe');
+    if (iframe) {
+      const resize = () => {
+        iframe.style.height = `${window.innerHeight}px`;
+      };
+      resize();
+      window.addEventListener('resize', resize);
+      return () => window.removeEventListener('resize', resize);
+    }
+  }, []);
+
   // useEffect(() => {
   //   async function func() {
   //     const res = await fetch(`https://kbtestframe.replit.app/api/getUrl`);
@@ -299,24 +311,35 @@ export default function Demo(
   }
 
   return (
-    <div style={{ 
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
+    <div style={{
+      position: 'absolute',
+      inset: 0, // shortcut for top: 0, bottom: 0, etc
       width: '100%',
-      height: '100%',
+      height: '100dvh',
       overflow: 'hidden',
-      paddingTop: context?.client.safeAreaInsets?.top ?? 0, 
-      paddingBottom: context?.client.safeAreaInsets?.bottom ?? 0,
-      paddingLeft: context?.client.safeAreaInsets?.left ?? 0,
-      paddingRight: context?.client.safeAreaInsets?.right ?? 0
+      display: 'flex',
+      flexDirection: 'column',
     }}>
-      <iframe src={url ?? `https://lutte-caster.vercel.app/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}
-        style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
-        allow="fullscreen"></iframe>
-
+      <div style={{
+        flex: 1,
+        width: '100%',
+        paddingTop: context?.client.safeAreaInsets?.top ?? 0,
+        paddingBottom: context?.client.safeAreaInsets?.bottom ?? 0,
+        paddingLeft: context?.client.safeAreaInsets?.left ?? 0,
+        paddingRight: context?.client.safeAreaInsets?.right ?? 0,
+        boxSizing: 'border-box',
+      }}>
+        <iframe
+          src={url ?? `https://lutte-caster.vercel.app/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            display: 'block',
+          }}
+          allow="fullscreen"
+        />
+      </div>
     </div>
   );
 }
