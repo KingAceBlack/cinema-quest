@@ -1,0 +1,83 @@
+Connecting to MongoDB...
+Database error: MongoServerSelectionError: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+
+    at Topology.selectServer (node_modules/mongodb/src/sdam/topology.ts:624:29)
+    at async Topology._connect (node_modules/mongodb/src/sdam/topology.ts:470:21)
+    at async Topology.connect (node_modules/mongodb/src/sdam/topology.ts:407:6)
+    at async topologyConnect (node_modules/mongodb/src/mongo_client.ts:610:8)
+    at async MongoClient._connect (node_modules/mongodb/src/mongo_client.ts:622:6) {
+  reason: [TopologyDescription],
+  code: undefined,
+  [cause]: MongoNetworkError: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+  
+      at TLSSocket.<anonymous> (node_modules/mongodb/src/cmap/connect.ts:394:15) {
+    [cause]: [Error: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}
+Database error: MongoServerSelectionError: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+
+    at Topology.selectServer (node_modules/mongodb/src/sdam/topology.ts:624:29)
+    at async Topology._connect (node_modules/mongodb/src/sdam/topology.ts:470:21)
+    at async Topology.connect (node_modules/mongodb/src/sdam/topology.ts:407:6)
+    at async topologyConnect (node_modules/mongodb/src/mongo_client.ts:610:8)
+    at async MongoClient._connect (node_modules/mongodb/src/mongo_client.ts:622:6) {
+  reason: [TopologyDescription],
+  code: undefined,
+  [cause]: MongoNetworkError: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+  
+      at TLSSocket.<anonymous> (node_modules/mongodb/src/cmap/connect.ts:394:15) {
+    [cause]: [Error: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}
+Database error: MongoServerSelectionError: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+
+    at Topology.selectServer (node_modules/mongodb/src/sdam/topology.ts:624:29)
+    at async Topology._connect (node_modules/mongodb/src/sdam/topology.ts:470:21)
+    at async Topology.connect (node_modules/mongodb/src/sdam/topology.ts:407:6)
+    at async topologyConnect (node_modules/mongodb/src/mongo_client.ts:610:8)
+    at async MongoClient._connect (node_modules/mongodb/src/mongo_client.ts:622:6) {
+  reason: [TopologyDescription],
+  code: undefined,
+  [cause]: MongoNetworkError: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+  
+      at TLSSocket.<anonymous> (node_modules/mongodb/src/cmap/connect.ts:394:15) {
+    [cause]: [Error: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}
+Database error: MongoServerSelectionError: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+
+    at Topology.selectServer (node_modules/mongodb/src/sdam/topology.ts:624:29)
+    at async Topology._connect (node_modules/mongodb/src/sdam/topology.ts:470:21)
+    at async Topology.connect (node_modules/mongodb/src/sdam/topology.ts:407:6)
+    at async topologyConnect (node_modules/mongodb/src/mongo_client.ts:610:8)
+    at async MongoClient._connect (node_modules/mongodb/src/mongo_client.ts:622:6) {
+  reason: [TopologyDescription],
+  code: undefined,
+  [cause]: MongoNetworkError: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+  
+      at TLSSocket.<anonymous> (node_modules/mongodb/src/cmap/connect.ts:394:15) {
+    [cause]: [Error: 803C79828C7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:907:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}
+ POST /api/logUser 500 in 15925ms
+ POST /api/logUser 500 in 15919ms
