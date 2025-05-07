@@ -13,11 +13,9 @@ let clientPromise;
 async function connectToDatabase() {
   if (!client) {
     client = new MongoClient(uri, {
-      serverApi: {
-        version: '1',
-        strict: true,
-        deprecationErrors: true,
-      },
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      // Removing serverApi because it's not necessary for SRV connections
     });
     clientPromise = client.connect();
   }
@@ -42,7 +40,7 @@ export async function POST(request) {
     const document = {
       fid,
       username,
-      timestamp: new Date(),
+      timestamp: Date.now(),
     };
     console.log('Attempting to insert document:', document);
 
