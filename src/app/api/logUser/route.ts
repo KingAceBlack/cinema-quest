@@ -37,12 +37,12 @@ export async function POST(request) {
     const db = await connectToDatabase();
     const collection = db.collection('user_logs_test');
 
-    const timestamp = Math.floor(Date.now() / 1000); // Unix timestamp
+    const timestamp = Date.now(); // Unix timestamp
     
-    // Check for recent logs from same user (within 5 seconds)
+    // Check for recent logs from same user (within 1 seconds)
     const recentLog = await collection.findOne({
       fid,
-      timestamp: { $gt: timestamp - 5 }
+      timestamp: { $gt: timestamp - 1 }
     });
 
     if (recentLog) {
