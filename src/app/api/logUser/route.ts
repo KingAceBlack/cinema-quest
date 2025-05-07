@@ -1,3 +1,4 @@
+
 import { MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
 
@@ -6,21 +7,15 @@ if (!uri) {
   throw new Error('MONGODB_URI is not defined in environment variables');
 }
 
-// Create a single MongoDB client instance
-let client;
-let clientPromise;
+const client = new MongoClient(uri);
+let isConnected = false;
 
 async function connectToDatabase() {
-  if (!client) {
-    client = new MongoClient(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      // Removing serverApi because it's not necessary for SRV connections
-    });
-    clientPromise = client.connect();
+  if (!isConnected) {
+    await client.connect();
+    isConnected = true;
   }
-  await clientPromise;
-  return client.db('FTDMiniApp'); // Replace with your actual database name
+  return client.db('FTDMiniApp');
 }
 
 export async function POST(request) {
@@ -37,12 +32,12 @@ export async function POST(request) {
     const db = await connectToDatabase();
     const collection = db.collection('user_logs_test');
 
-    const timestamp = Date.now(); // Unix timestamp
+    const timestamp = Math.floor(Date.now() / 1000); // Unix timestamp in seconds
     
-    // Check for recent logs from same user (within 1 seconds)
+    // Check for recent logs from same user (within last 30 seconds)
     const recentLog = await collection.findOne({
       fid,
-      timestamp: { $gt: timestamp - 1 }
+      timestamp: { $gt: timestamp - 30 }
     });
 
     if (recentLog) {
