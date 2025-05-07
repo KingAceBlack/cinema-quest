@@ -37,10 +37,23 @@ export async function POST(request) {
     const db = await connectToDatabase();
     const collection = db.collection('user_logs_test');
 
+    const timestamp = Math.floor(Date.now() / 1000); // Unix timestamp
+    
+    // Check for recent logs from same user (within 5 seconds)
+    const recentLog = await collection.findOne({
+      fid,
+      timestamp: { $gt: timestamp - 5 }
+    });
+
+    if (recentLog) {
+      console.log('Duplicate log prevented for user:', username);
+      return NextResponse.json({ success: true, id: recentLog._id });
+    }
+
     const document = {
       fid,
       username,
-      timestamp: Date.now(),
+      timestamp
     };
     console.log('Attempting to insert document:', document);
 
