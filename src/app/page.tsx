@@ -9,10 +9,10 @@ const frame = {
   version: "next",
   imageUrl: `${appUrl}/crossedSwords.png`,
   button: {
-    title: "Launch Frame",
+    title: "Begin",
     action: {
       type: "launch_frame",
-      name: "kb test",
+      name: "Fell The Dragon",
       url: appUrl,
       splashImageUrl: `${appUrl}/crossedSwordsLogo.png`,
       splashBackgroundColor: "#EAE3C8",
@@ -25,10 +25,10 @@ export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL('https://kbtestframe.replit.app'),
-    title: "kb test",
+    title: "Fell The Dragon",
     openGraph: {
-      title: "kb test",
-      description: "kb test",
+      title: "Fell The Dragon",
+      description: "Fell The Dragon",
     },
     other: {
       "fc:frame": JSON.stringify(frame),
