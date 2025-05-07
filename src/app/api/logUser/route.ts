@@ -1,4 +1,3 @@
-
 import { MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
 
@@ -7,20 +6,26 @@ if (!uri) {
   throw new Error('MONGODB_URI is not defined in environment variables');
 }
 
-const client = new MongoClient(uri, {
-  ssl: true,
-  tls: true,
-  tlsAllowInvalidCertificates: true,
-  serverApi: {
-    version: '1',
-    strict: true,
-    deprecationErrors: true
-  },
-  directConnection: true
-});
-let isConnected = false;
+// Create a single MongoDB client instance
+let client;
+let clientPromise;
 
-export async function POST(request: Request) {
+async function connectToDatabase() {
+  if (!client) {
+    client = new MongoClient(uri, {
+      serverApi: {
+        version: '1',
+        strict: true,
+        deprecationErrors: true,
+      },
+    });
+    clientPromise = client.connect();
+  }
+  await clientPromise;
+  return client.db('FTDMiniApp'); // Replace with your actual database name
+}
+
+export async function POST(request) {
   try {
     console.log('Received POST request to /api/logUser');
     const { fid, username } = await request.json();
@@ -31,25 +36,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    if (!isConnected) {
-      console.log('Connecting to MongoDB...');
-      await client.connect({
-        ssl: true,
-        tls: true,
-        tlsAllowInvalidCertificates: true,
-        serverApi: {
-          version: '1',
-          strict: true,
-          deprecationErrors: true
-        }
-      });
-      isConnected = true;
-      console.log('Connected to MongoDB successfully');
-    }
+    const db = await connectToDatabase();
+    const collection = db.collection('user_logs_test');
 
-    const db = client.db();
-    const collection = db.collection('user_logs');
-    
     const document = {
       fid,
       username,
@@ -60,13 +49,9 @@ export async function POST(request: Request) {
     const result = await collection.insertOne(document);
     console.log('Insert result:', result);
 
-    // Verify the insert by reading it back
-    const verification = await collection.findOne({ _id: result.insertedId });
-    console.log('Verification read:', verification);
-
     return NextResponse.json({ success: true, id: result.insertedId });
   } catch (error) {
     console.error('Database error:', error);
-    return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    return NextResponse.json({ error: 'Database error', details: error.message }, { status: 500 });
   }
 }
