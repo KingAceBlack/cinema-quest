@@ -1,6 +1,7 @@
+
 import { ImageResponse } from "next/og";
 
-export const alt = "Fell The Dragon;
+export const alt = "Fell The Dragon";
 export const size = {
   width: 600,
   height: 400,
