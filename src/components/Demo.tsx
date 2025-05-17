@@ -103,7 +103,7 @@ export default function Demo(
 
   // useEffect(() => {
   //   async function func() {
-  //     const res = await fetch(`https://kbtestframe.replit.app/api/getUrl`);
+  //     const res = await fetch(`https://base-dugeons.vercel.app/api/getUrl`);
   //     const data = await res.json();
   //     console.log('iframe url', data.url)
   //     setUrl(data.url);
@@ -344,7 +344,7 @@ export default function Demo(
         boxSizing: 'border-box',
       }}>
         <iframe
-          src={url ?? `https://lutte-caster.vercel.app/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}
+          src={url ?? `https://base-dugeons.vercel.app/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}
           style={{
             width: '100%',
             height: '100%',

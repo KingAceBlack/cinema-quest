@@ -1,0 +1,91 @@
+2025-05-10 01:16:40,788 - semgrep.run_scan - DEBUG - semgrep version 1.2.0
+2025-05-10 01:16:40,806 - semgrep.config_resolver - DEBUG - Loading local config from /home/runner/workspace/.config/.semgrep/semgrep_rules.json
+2025-05-10 01:16:41,160 - semgrep.config_resolver - DEBUG - Done loading local config from /home/runner/workspace/.config/.semgrep/semgrep_rules.json
+2025-05-10 01:16:41,163 - semgrep.config_resolver - DEBUG - Saving rules to /tmp/semgrep-0wir9mn2.rules
+2025-05-10 01:16:41,438 - semgrep.semgrep_core - DEBUG - Failed to open resource semgrep-core-proprietary: [Errno 2] No such file or directory: '/tmp/_MEId7N95L/semgrep/bin/semgrep-core-proprietary'.
+2025-05-10 01:16:42,214 - semgrep.rule_lang - DEBUG - semgrep-core validation response: valid=True
+2025-05-10 01:16:42,215 - semgrep.rule_lang - DEBUG - semgrep-core validation succeeded
+2025-05-10 01:16:42,215 - semgrep.rule_lang - DEBUG - RPC validation succeeded
+2025-05-10 01:16:42,215 - semgrep.config_resolver - DEBUG - loaded 1 configs in 1.40956711769104
+2025-05-10 01:16:42,459 - semgrep.run_scan - VERBOSE - running 1250 rules from 1 config /home/runner/workspace/.config/.semgrep/semgrep_rules.json_0
+2025-05-10 01:16:42,460 - semgrep.run_scan - VERBOSE - No .semgrepignore found. Using default .semgrepignore rules. See the docs for the list of default ignores: https://semgrep.dev/docs/cli-usage/#ignore-files
+2025-05-10 01:16:42,463 - semgrep.run_scan - VERBOSE - Rules:
+2025-05-10 01:16:42,463 - semgrep.run_scan - VERBOSE - <SKIPPED DATA (too many entries; use --max-log-list-entries)>
+2025-05-10 01:16:42,735 - semgrep.core_runner - DEBUG - Passing whole rules directly to semgrep_core
+2025-05-10 01:16:42,881 - semgrep.core_runner - DEBUG - Running Semgrep engine with command:
+2025-05-10 01:16:42,882 - semgrep.core_runner - DEBUG - /tmp/_MEId7N95L/semgrep/bin/opengrep-core -json -rules /tmp/tmp02wz3xly.json -j 8 -targets /tmp/tmpiwcc05gs -timeout 5 -timeout_threshold 3 -max_memory 0 -fast
+2025-05-10 01:16:44,789 - semgrep.core_runner - DEBUG - --- semgrep-core stderr ---
+[00.07][[34mINFO[0m]: Executed as: /tmp/_MEId7N95L/semgrep/bin/opengrep-core -json -rules /tmp/tmp02wz3xly.json -j 8 -targets /tmp/tmpiwcc05gs -timeout 5 -timeout_threshold 3 -max_memory 0 -fast
+[00.07][[34mINFO[0m]: Version: 1.2.0
+[00.07][[34mINFO[0m]: Parsing rules in /tmp/tmp02wz3xly.json
+[00.85][[34mINFO[0m]: scan: processing 140 files (skipping 0), with 484 rules (skipping 0 )
+[01.87][[34mINFO[0m]: Custom ignore pattern: None
+[01.87][[34mINFO[0m]: Custom ignore pattern: None
+--- end semgrep-core stderr ---
+2025-05-10 01:16:44,796 - semgrep.rule_match - DEBUG - match_key = ('', PosixPath('src/components/Demo.tsx'), 'config..semgrep.vendored-rules.javascript.browser.security.wildcard-postmessage-configuration') match_id = fc1843485c211d2b39785dd4c1f9f348f0740d9c3cd23087b422f38f5f88fe9546245080367c6b04f69c9290ef5b00f12c4f7ea9e5959b59dbb00761f3e3bd35_0
+2025-05-10 01:16:44,797 - semgrep.rule_match - DEBUG - match_key = ("iframe.contentWindow?..postMessage(...,'*')", PosixPath('src/components/Demo.tsx'), 'config..semgrep.vendored-rules.javascript.browser.security.wildcard-postmessage-configuration') match_id = 4ba6db50fb11f2203a5a9bb33e661e7c2b53ef802d90e330f6303dff283a699033abe6cd87ce9e43b5b1a2a212dff7c44eb5ed69139e76cb71c0088500f9c700_0
+2025-05-10 01:16:44,797 - semgrep.rule_match - DEBUG - match_key = ("iframe.contentWindow?..postMessage(...,'*')", PosixPath('src/components/Demo.tsx'), 'config..semgrep.vendored-rules.javascript.browser.security.wildcard-postmessage-configuration') match_id = 4ba6db50fb11f2203a5a9bb33e661e7c2b53ef802d90e330f6303dff283a699033abe6cd87ce9e43b5b1a2a212dff7c44eb5ed69139e76cb71c0088500f9c700_0
+2025-05-10 01:16:44,798 - semgrep.rule_match - DEBUG - match_key = ("iframe.contentWindow?..postMessage(...,'*')", PosixPath('src/components/Demo.tsx'), 'config..semgrep.vendored-rules.javascript.browser.security.wildcard-postmessage-configuration') match_id = 4ba6db50fb11f2203a5a9bb33e661e7c2b53ef802d90e330f6303dff283a699033abe6cd87ce9e43b5b1a2a212dff7c44eb5ed69139e76cb71c0088500f9c700_0
+2025-05-10 01:16:44,800 - semgrep.core_runner - DEBUG - semgrep ran in 0:00:02.064935 on 55 files
+2025-05-10 01:16:44,802 - semgrep.core_runner - DEBUG - findings summary: 1 warning, 0 error, 0 info
+2025-05-10 01:16:44,805 - semgrep.app.auth - DEBUG - Getting API token from settings file
+2025-05-10 01:16:44,805 - semgrep.app.auth - DEBUG - No API token found in settings file
+2025-05-10 01:16:44,806 - semgrep.semgrep_core - DEBUG - Failed to open resource semgrep-core-proprietary: [Errno 2] No such file or directory: '/tmp/_MEId7N95L/semgrep/bin/semgrep-core-proprietary'.
+2025-05-10 01:16:44,908 - semgrep.output - VERBOSE - 
+========================================
+Files skipped:
+========================================
+
+  Always skipped by Opengrep:
+
+   • <none>
+
+  Skipped by .gitignore:
+  (Disable by passing --no-git-ignore)
+
+   • <all files not listed by `git ls-files` were skipped>
+
+  Skipped by .semgrepignore:
+  - https://semgrep.dev/docs/ignoring-files-folders-code/#understand-semgrep-defaults
+
+   • <none>
+
+  Skipped by --include patterns:
+
+   • <none>
+
+  Skipped by --exclude patterns:
+
+   • <none>
+
+  Files skipped due to insufficient read permissions:
+
+   • <none>
+
+  Skipped by limiting to files smaller than 1000000 bytes:
+  (Adjust with the --max-target-bytes flag)
+
+   • docs/img/9_url.png
+   • public/crossedSwords.png
+   • public/crossedSwordsLogo.png
+   • public/icon.png
+   • public/scgTextLogo.png
+   • public/scgWithSubtext.png
+   • public/southCastleGives.png
+   • public/southCastleGivesWithSubtext.png
+   • public/splash.png
+
+  Partially analyzed due to parsing or internal Opengrep errors
+
+   • src/app/opengraph-image.tsx (1 lines skipped)
+   • tailwind.config.ts (1 lines skipped)
+
+2025-05-10 01:16:44,909 - semgrep.output - INFO - Some files were skipped or only partially analyzed.
+  Scan was limited to files tracked by git.
+  Partially scanned: 2 files only partially analyzed due to parsing or internal Opengrep errors
+  Scan skipped: 9 files larger than 1.0 MB
+  For a full list of skipped files, run opengrep with the --verbose flag.
+
+Ran 418 rules on 55 files: 1 finding.
+2025-05-10 01:16:44,909 - semgrep.app.version - DEBUG - Version cache does not exist
+2025-05-10 01:16:44,931 - semgrep.metrics - VERBOSE - Not sending pseudonymous metrics since metrics are configured to OFF and registry usage is False

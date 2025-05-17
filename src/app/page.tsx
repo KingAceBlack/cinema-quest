@@ -3,7 +3,7 @@ import App from "./app";
 
 // const appUrl = process.env.NEXT_PUBLIC_URL;
 // const appUrl = 'https://9cf4c62f-7bc5-42d6-a3d0-01aeaea50754-00-2obuwftnnc76u.kirk.replit.dev';
-const appUrl = 'https://kbtestframe.replit.app';
+const appUrl = 'https://base-dugeons.vercel.app/';
 
 const frame = {
   version: "next",
@@ -24,7 +24,7 @@ export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL('https://kbtestframe.replit.app'),
+    metadataBase: new URL('https://base-dugeons.vercel.app/'),
     title: "Fell The Dragon",
     openGraph: {
       title: "Fell The Dragon",

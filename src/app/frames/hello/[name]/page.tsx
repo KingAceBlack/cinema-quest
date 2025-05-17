@@ -3,7 +3,7 @@ import App from "~/app/app";
 
 // const appUrl = process.env.NEXT_PUBLIC_URL;
 // const appUrl = 'https://9cf4c62f-7bc5-42d6-a3d0-01aeaea50754-00-2obuwftnnc76u.kirk.replit.dev';
-const appUrl = 'https://kbtestframe.replit.app';
+const appUrl = 'https://base-dugeons.vercel.app';
 
 interface Props {
   params: Promise<{
