@@ -3,7 +3,7 @@ import App from "~/app/app";
 
 // const appUrl = process.env.NEXT_PUBLIC_URL;
 // const appUrl = 'https://9cf4c62f-7bc5-42d6-a3d0-01aeaea50754-00-2obuwftnnc76u.kirk.replit.dev';
-const appUrl = 'https://base-dugeons.vercel.app';
+const appUrl = 'https://based-dungeons.vercel.app';
 
 interface Props {
   params: Promise<{
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: "Begin",
       action: {
         type: "launch_frame",
-        name: "Fell The Dragon",
+        name: "Base Dungeons",
         url: `${appUrl}`,
         splashImageUrl: `${appUrl}/crossedSwordsLogo.png`,
         splashBackgroundColor: "#EAE3C8",
@@ -30,11 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 
   return {
-    title: `Fell The Dragon`,
-    description: `Fell The Dragon`,
+    title: `Base Dungeons`,
+    description: `Base Dungeons`,
     openGraph: {
-      title: `Fell The Dragon`,
-      description: `Fell The Dragon`,
+      title: `Base Dungeons`,
+      description: `Base Dungeons`,
     },
     other: {
       "fc:frame": JSON.stringify(frame),

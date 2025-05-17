@@ -1,7 +1,7 @@
 export async function GET() {
   // const appUrl = process.env.NEXT_PUBLIC_URL;
   // const appUrl = 'https://9cf4c62f-7bc5-42d6-a3d0-01aeaea50754-00-2obuwftnnc76u.kirk.replit.dev';
-  const appUrl = 'https://base-dugeons.vercel.app';
+  const appUrl = 'https://based-dungeons.vercel.app';
 
   // "accountAssociation": {
     //   "header": "eyJmaWQiOjIxMzEwMywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEVhQTJGOGIwOTEzNTI3ZDYyNzE5MTVkNzQ1MDdlMDdFNmUzMjRmNDAifQ",
@@ -17,7 +17,7 @@ export async function GET() {
     },
     "frame": {
       "version": "1",
-      "name": "Fell the Dragon",
+      "name": "Based Dungeon",
       "iconUrl": `${appUrl}/crossedSwordsLogo.png`,
       "homeUrl": appUrl,
       "imageUrl": `${appUrl}/crossedSwords.png`,
