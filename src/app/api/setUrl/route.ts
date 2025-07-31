@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       { upsert: true, returnDocument: 'after' } // Create if not exists, return the updated document
     );
 
-    return NextResponse.redirect(`https://google.com/`, 303);
+    return NextResponse.redirect(`https://www.wikipedia.org/`, 303);
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json({ error: 'Database error' }, { status: 500 });
