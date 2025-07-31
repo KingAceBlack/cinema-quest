@@ -8,12 +8,12 @@ export async function GET() {
     //   "payload": "eyJkb21haW4iOiI5Y2Y0YzYyZi03YmM1LTQyZDYtYTNkMC0wMWFlYWVhNTA3NTQtMDAtMm9idXdmdG5uYzc2dS5raXJrLnJlcGxpdC5kZXYifQ",
     //   "signature": "MHhhY2JjZjFlOWVhM2E0NDM2Nzc1M2Y3YTM5NDRkYzQ4ZTM2MDIyODdiMTg5N2VlOGQ2NjAwNWZhZjViYjMwNzBlNmVhMDVhNjljNzBlNDQ2ODFkNzg1YzdiMmE1MmQ3MjZjOTA1YjliMDU0MTRiNGM5OTE2NjAyNDhlZDk4YzJiNzFj"
   // },
-  
+
   const config = {
     "accountAssociation": {
     "header": "eyJmaWQiOjIwMzU5LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4N2IxYTc1ZGYyMDMxOTU5NTU2YzA3MjI3YTI3NDAwZjQ5NjZlNDQyMTBjZWQ1MDAzMzdmOGU0YzZhM2Y0NzM0NCJ9",
     "payload": "eyJkb21haW4iOiJiYXNlZC1kdW5nZW9ucy52ZXJjZWwuYXBwIn0",
-    "signature": "JyVRhZ1m3J9haXf3jhajqUpuViW6heHcuy8maVfQzwhuvWwkqPd-2VqhOlJu2M8xosUByM5DnJuUOQ0kV6wZDg"
+    "signature": "S6m54usU3ihFLopJVHLEGKOslUn+851JvpobD7x7bVlPNhIO17iSfOeActc9h7ZFgJ3NoP3ZCAiQOsdcUhyrVRs="
   },
     "frame": {
       "version": "1",
