@@ -344,7 +344,7 @@ export default function Demo(
         boxSizing: 'border-box',
       }}>
         <iframe
-          src={url ?? `https://google.com/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}
+          src={url ?? `https://www.wikipedia.org/${context?.user?.fid ? `?fid=${context.user.fid}` : ''}`}
           style={{
             width: '100%',
             height: '100%',
