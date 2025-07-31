@@ -11,10 +11,10 @@ export async function GET() {
   
   const config = {
     "accountAssociation": {
-      "header": "eyJmaWQiOjIxMzEwMywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEVhQTJGOGIwOTEzNTI3ZDYyNzE5MTVkNzQ1MDdlMDdFNmUzMjRmNDAifQ",
-      "payload": "eyJkb21haW4iOiJrYnRlc3RmcmFtZS5yZXBsaXQuYXBwIn0",
-      "signature": "MHgxNzRjZmRhYmRmMGE0ZGEzYjQ5M2FkODVmNDNjZmQ5NDYxZjg5MTk1YTcwNmUyMzE5NGZlNzZjNWM1YzNhM2VlMzk5NTRiYjkyOWJjMjA3MGYxNjQ4N2U4YmE4MTAyN2Q4MzEwOGE3Mjg0YmNmZjYwYjBlM2JhOGYwZWYxNWJkYjFj"
-    },
+    "header": "eyJmaWQiOjIwMzU5LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4N2IxYTc1ZGYyMDMxOTU5NTU2YzA3MjI3YTI3NDAwZjQ5NjZlNDQyMTBjZWQ1MDAzMzdmOGU0YzZhM2Y0NzM0NCJ9",
+    "payload": "eyJkb21haW4iOiJiYXNlZC1kdW5nZW9ucy52ZXJjZWwuYXBwIn0",
+    "signature": "JyVRhZ1m3J9haXf3jhajqUpuViW6heHcuy8maVfQzwhuvWwkqPd-2VqhOlJu2M8xosUByM5DnJuUOQ0kV6wZDg"
+  },
     "frame": {
       "version": "1",
       "name": "Based Dungeon",
