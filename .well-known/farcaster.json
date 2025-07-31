@@ -2,7 +2,8 @@
  "accountAssociation": {
     "header": "eyJmaWQiOjIwMzU5LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4N2IxYTc1ZGYyMDMxOTU5NTU2YzA3MjI3YTI3NDAwZjQ5NjZlNDQyMTBjZWQ1MDAzMzdmOGU0YzZhM2Y0NzM0NCJ9",
     "payload": "eyJkb21haW4iOiJiYXNlZC1kdW5nZW9ucy52ZXJjZWwuYXBwIn0",
-    "signature": "JyVRhZ1m3J9haXf3jhajqUpuViW6heHcuy8maVfQzwhuvWwkqPd-2VqhOlJu2M8xosUByM5DnJuUOQ0kV6wZDg"
+    "signature": "JyVRhZ1m3J9haXf3jhajqUpuViW6heHcuy8maVfQzwhuvWwkqPd-2VqhOlJu2M8xosUByM5DnJuUOQ0kV6wZDg",
+    "playable": "nope"
   }
 }
 
