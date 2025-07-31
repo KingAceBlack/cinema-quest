@@ -1,22 +1,21 @@
 export async function GET() {
-  // const appUrl = process.env.NEXT_PUBLIC_URL;
-  // const appUrl = 'https://9cf4c62f-7bc5-42d6-a3d0-01aeaea50754-00-2obuwftnnc76u.kirk.replit.dev';
-  const appUrl = 'https://based-dungeons.vercel.app';
-
-
-
-  const config = {
-    "accountAssociation": {
-    "header": "eyJmaWQiOjIwMzU5LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4N2IxYTc1ZGYyMDMxOTU5NTU2YzA3MjI3YTI3NDAwZjQ5NjZlNDQyMTBjZWQ1MDAzMzdmOGU0YzZhM2Y0NzM0NCJ9",
-    "payload": "eyJkb21haW4iOiJiYXNlZC1kdW5nZW9ucy52ZXJjZWwuYXBwIn0",
-    "signature": "S6m54usU3ihFLopJVHLEGKOslUn+851JvpobD7x7bVlPNhIO17iSfOeActc9h7ZFgJ3NoP3ZCAiQOsdcUhyrVRs="
-      
-  },
-   
-  };
-
-  return Response.json(config);
+  return new Response(
+    JSON.stringify({
+      accountAssociation: {
+        header: "eyJmaWQiOjIwMzU5LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4N2IxYTc1ZGYyMDMxOTU5NTU2YzA3MjI3YTI3NDAwZjQ5NjZlNDQyMTBjZWQ1MDAzMzdmOGU0YzZhM2Y0NzM0NCJ9",
+        payload: "eyJkb21haW4iOiJiYXNlZC1kdW5nZW9ucy52ZXJjZWwuYXBwIn0",
+        signature: "S6m54usU3ihFLopJVHLEGKOslUn+851JvpobD7x7bVlPNhIO17iSfOeActc9h7ZFgJ3NoP3ZCAiQOsdcUhyrVRs="
+      }
+    }),
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=60',
+      },
+    }
+  );
 }
+
 
 // {
 //   "accountAssociation": {
