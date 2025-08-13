@@ -1,1 +1,1 @@
-Base Dungeon mini-app on Farcaster.
+Farcaster wrapper for movie quest.
