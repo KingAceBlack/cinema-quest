@@ -3,7 +3,7 @@ import App from "~/app/app";
 
 // const appUrl = process.env.NEXT_PUBLIC_URL;
 // const appUrl = 'https://9cf4c62f-7bc5-42d6-a3d0-01aeaea50754-00-2obuwftnnc76u.kirk.replit.dev';
-const appUrl = 'https://based-dungeons.vercel.app';
+const appUrl = 'https://movie-quest-sigma.vercel.app';
 
 const frame = {
   version: "next",
@@ -21,11 +21,11 @@ const frame = {
 };
 
 export const metadata: Metadata = {
-  title: "kb test",
-  description: "kb test",
+  title: "Movie Quest",
+  description: "Movie Quest",
   openGraph: {
-    title: "kb test",
-    description: "kb test",
+    title: "Movie Quest",
+    description: "Movie Quest",
   },
   other: {
     "fc:frame": JSON.stringify(frame),
@@ -33,5 +33,5 @@ export const metadata: Metadata = {
 };
 
 export default function HelloFrame() {
-  return <App title={"kb test"} />;
+  return <App title={"Movie Quest"} />;
 }
