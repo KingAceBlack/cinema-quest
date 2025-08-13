@@ -3,7 +3,7 @@ import App from "~/app/app";
 
 // const appUrl = process.env.NEXT_PUBLIC_URL;
 // const appUrl = 'https://9cf4c62f-7bc5-42d6-a3d0-01aeaea50754-00-2obuwftnnc76u.kirk.replit.dev';
-const appUrl = 'https://based-dungeons.vercel.app';
+const appUrl = 'https://cinema-quest-eosin.vercel.app';
 
 interface Props {
   params: Promise<{
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: "Begin",
       action: {
         type: "launch_frame",
-        name: "Base Dungeons",
+        name: "Movie Quest",
         url: `${appUrl}`,
         splashImageUrl: `${appUrl}/crossedSwordsLogo.png`,
         splashBackgroundColor: "#EAE3C8",
@@ -30,11 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 
   return {
-    title: `Base Dungeons`,
-    description: `Base Dungeons`,
+    title: `Movie Quest`,
+    description: `Movie Quest`,
     openGraph: {
-      title: `Base Dungeons`,
-      description: `Base Dungeons`,
+      title: `Movie Quest`,
+      description: `Movie Quest`,
     },
     other: {
       "fc:frame": JSON.stringify(frame),
@@ -45,5 +45,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HelloNameFrame({ params }: Props) {
   const { name } = await params;
 
-  return <App title={`kb test`} />;
+  return <App title={`Movie Quest`} />;
 }
