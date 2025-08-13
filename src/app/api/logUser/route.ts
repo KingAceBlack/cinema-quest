@@ -1,23 +1,23 @@
-
 import { MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
 
 const uri = process.env.MONGODB_URI;
-if (!uri) {
-  throw new Error('MONGODB_URI is not defined in environment variables');
-}
-
-const client = new MongoClient(uri, {
-  ssl: true,
-  tls: true,
-  tlsAllowInvalidCertificates: true,
-  serverApi: {
-    version: '1',
-    strict: true,
-    deprecationErrors: true
-  }
-});
+let client;
 let isConnected = false;
+
+// Only initialize if MongoDB URI is present
+if (uri) {
+  client = new MongoClient(uri, {
+    ssl: true,
+    tls: true,
+    tlsAllowInvalidCertificates: true,
+    serverApi: {
+      version: '1',
+      strict: true,
+      deprecationErrors: true
+    }
+  });
+}
 
 async function connectToDatabase() {
   if (!isConnected) {
@@ -38,11 +38,17 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    // If no MongoDB configured, skip DB logic but still respond success
+    if (!uri) {
+      console.warn('⚠ MONGODB_URI not set — skipping log to database.');
+      return NextResponse.json({ success: true, id: null, skippedDB: true });
+    }
+
     const db = await connectToDatabase();
     const collection = db.collection('user_logs_test');
 
-    const timestamp = Date.now(); // Unix timestamp
-    
+    const timestamp = Date.now();
+
     // Check for recent logs from same user (within last 1 second)
     const recentLog = await collection.findOne({
       fid,
@@ -54,11 +60,7 @@ export async function POST(request) {
       return NextResponse.json({ success: true, id: recentLog._id });
     }
 
-    const document = {
-      fid,
-      username,
-      timestamp
-    };
+    const document = { fid, username, timestamp };
     console.log('Attempting to insert document:', document);
 
     const result = await collection.insertOne(document);
