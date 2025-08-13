@@ -30,7 +30,7 @@ import { BaseError, UserRejectedRequestError, parseEther } from "viem";
 
 
 export default function Demo(
-  { title }: { title?: string } = { title: "Based Dungeon" }
+  { title }: { title?: string } = { title: "Movie Quest" }
 ) {
   const [appUrl, setAppUrl] = useState('');
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
