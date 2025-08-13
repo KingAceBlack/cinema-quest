@@ -5,8 +5,8 @@ import "~/app/globals.css";
 import { Providers } from "~/app/providers";
 
 export const metadata: Metadata = {
-  title: "Fell The Dragon",
-  description: "Fell The Dragon",
+  title: "Movie Quest",
+  description: "Movie Quest",
 };
 
 export default async function RootLayout({
