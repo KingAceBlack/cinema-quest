@@ -28,6 +28,12 @@ import { mainnet,
    degen } from "wagmi/chains";
 import { BaseError, UserRejectedRequestError, parseEther } from "viem";
 
+// TypeScript declaration for window object
+declare global {
+  interface Window {
+    shareToFarcaster: (grade: string, accuracy: number) => void;
+  }
+}
 
 export default function Demo(
   { title }: { title?: string } = { title: "Movie Quest" }
@@ -89,6 +95,16 @@ export default function Demo(
     isPending: isSwitchChainPending,
   } = useSwitchChain();
 
+  // Define shareToFarcaster function using useCallback
+  const shareToFarcaster = useCallback((grade: string, accuracy: number) => {
+    const text = `🎬 I scored ${grade} (${accuracy}% correct) in Movie QUEST!`;
+    const gameUrl = "https://cinema-quest-eosin.vercel.app/";
+    sdk.actions.composeCast({
+      text,
+      embeds: [gameUrl],
+    });
+  }, []);
+
   useEffect(() => {
     const iframe = document.querySelector('iframe');
     if (iframe) {
@@ -101,6 +117,14 @@ export default function Demo(
     }
   }, []);
 
+  // Expose shareToFarcaster to window object
+  useEffect(() => {
+    window.shareToFarcaster = shareToFarcaster;
+    
+    return () => {
+      delete window.shareToFarcaster;
+    };
+  }, [shareToFarcaster]);
 
   
   
@@ -264,7 +288,7 @@ export default function Demo(
         }
       }
 
-      // 📝 Save to localStorage and MongoDB
+      // ðŸ" Save to localStorage and MongoDB
       const fid = context?.user?.fid;
       const username = context?.user?.username;
 
