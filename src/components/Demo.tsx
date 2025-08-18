@@ -101,6 +101,17 @@ export default function Demo(
     }
   }, []);
 
+window.shareToFarcaster = (grade: string, accuracy: number) => {
+  const text = `🎬 I scored ${grade} (${accuracy}% correct) in Movie QUEST!`;
+  const gameUrl = "https://cinema-quest-eosin.vercel.app/";
+
+  sdk.actions.composeCast({
+    text,
+    embeds: [gameUrl],
+  });
+};
+  
+  
   // useEffect(() => {
   //   async function func() {
   //     const res = await fetch(`https://base-dugeons.vercel.app/api/getUrl`);
