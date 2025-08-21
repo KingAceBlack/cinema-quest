@@ -2,11 +2,14 @@ export async function GET() {
   return new Response(
     JSON.stringify({
       accountAssociation: {
-        header: "eyJmaWQiOjIwMzU5LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4YTVFNTBCMDg4Zjk0MEE2RjcwMTgzMUFCZjc2REVjNUNiQ2JCNDI5NCJ9",
-        payload: "eyJkb21haW4iOiJiYXNlZC1kdW5nZW9ucy52ZXJjZWwuYXBwIn0",
-        signature: "S6m54usU3ihFLopJVHLEGKOslUn+851JvpobD7x7bVlPNhIO17iSfOeActc9h7ZFgJ3NoP3ZCAiQOsdcUhyrVRs="
+        "header": "eyJmaWQiOjIwMzU5LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4YTVFNTBCMDg4Zjk0MEE2RjcwMTgzMUFCZjc2REVjNUNiQ2JCNDI5NCJ9",
+        "payload": "eyJkb21haW4iOiJjaW5lbWEtcXVlc3QtZW9zaW4udmVyY2VsLmFwcCJ9",
+        "signature": "Y5vPa13YuDKnWTLHfXGjE1KGl7TC1nHyNbJwQnfH5gBOmBl4YqF/c16m1drHCkMpuQYsXzMEp9H+rat8WKVTNxs="
       }
     }),
+
+    
+    
     {
       headers: {
         'Content-Type': 'application/json',
