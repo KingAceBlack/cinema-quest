@@ -3,12 +3,12 @@ export async function GET() {
     JSON.stringify({
       accountAssociation: {
         "header": "eyJmaWQiOjIwMzU5LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4YTVFNTBCMDg4Zjk0MEE2RjcwMTgzMUFCZjc2REVjNUNiQ2JCNDI5NCJ9",
-        "payload": "eyJkb21haW4iOiJjaW5lbWEtcXVlc3QtZW9zaW4udmVyY2VsLmFwcCJ9",
-        "signature": "Y5vPa13YuDKnWTLHfXGjE1KGl7TC1nHyNbJwQnfH5gBOmBl4YqF/c16m1drHCkMpuQYsXzMEp9H+rat8WKVTNxs="
+        "payload": "eyJkb21haW4iOiJodHRwczovL2NpbmVtYS1xdWVzdC1lb3Npbi52ZXJjZWwuYXBwLyJ9",
+        "signature": "ZFzIvTPSP6+qIqxrCRng+oo/z2t3VjQiH0d03KurLKoffEYUR3Mt73gKCVyifCANO1e0PhwmncCx1mBAeuTs6xw="
       }
     }),
 
-    
+
     
     {
       headers: {
