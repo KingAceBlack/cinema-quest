@@ -25,7 +25,7 @@ export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL('https://cinema-quest-eosin.vercel.app/'),
-    title: "Fell The Dragon",
+    title: "Movie Quest",
     openGraph: {
       title: "Movie Quest",
       description: "Movie Quest",
