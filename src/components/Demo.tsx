@@ -171,10 +171,7 @@ export default function Demo(
             console.log('message for this user');
             const text = "🎬 Need help with this movie challenge! Anyone want to join?";
             const embeds = ["https://cinema-quest-eosin.vercel.app/"];
-            sdk.actions.composeCast({ 
-              text,
-              embeds,
-            })
+            sdk.actions.openUrl(`https://warpcast.com/~/compose?text=${encodeURIComponent(text)}&embeds[]=${encodeURIComponent(embeds[0])}`);
           }
         });
 
