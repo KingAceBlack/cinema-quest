@@ -16,6 +16,7 @@ import {
   useSwitchChain,
   useChainId,
 } from "wagmi";
+import io from "socket.io-client";
 
 import { config } from "~/components/providers/WagmiProvider";
 import { Button } from "~/components/ui/Button";
@@ -50,6 +51,7 @@ export default function Demo(
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationMade, setDonationMade] = useState(false);
   const [url, setUrl] = useState();
+  const [socket, setSocket] = useState<any>(null);
 
   const [added, setAdded] = useState(false);
     useState<FrameNotificationDetails | null>(null);
@@ -127,134 +129,7 @@ export default function Demo(
   }, [shareToFarcaster]);
 
   
-  
-  // useEffect(() => {
-  //   async function func() {
-  //     const res = await fetch(`https://base-dugeons.vercel.app/api/getUrl`);
-  //     const data = await res.json();
-  //     console.log('iframe url', data.url)
-  //     setUrl(data.url);
-  //   }
-
-  //   func();
-  // }, [])
-
-  // const handleSwitchChain = useCallback(() => {
-  //   switchChain({ chainId: chainId === base.id ? optimism.id : base.id });
-  // }, [switchChain, chainId]);
-
-  // const switchToBase = () => {
-  //   switchChain({ chainId: base.id });
-  // };
-
-  // const switchToMainnet = () => {
-  //   switchChain({ chainId: mainnet.id });
-  // };
-
-  // const switchToOptimism = () => {
-  //   switchChain({ chainId: optimism.id });
-  // };
-
-  // const switchToPolygon = () => {
-  //   switchChain({ chainId: polygon.id });
-  // };
-
-  // const switchToArbitrum = () => {
-  //   switchChain({ chainId: arbitrum.id });
-  // };
-
-  // const switchToDegen = () => {
-  //   switchChain({ chainId: degen.id });
-  // };
-
-  // const getEndaomentTxDetails = async (chainId: any, amount: any, tokenAddress = null) => {
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.endaoment.org/v1/sdk/donations/swap?id=d937a50f-336b-4f0a-8143-7b47b03d0988&chainId=${chainId}&amountIn=${amount}`,
-  //       {
-  //         method: 'GET',
-  //         headers: {
-  //           'Accept': 'application/json',
-  //         },
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       console.error(`HTTP error! status: ${response.status}`);
-  //       setLogger(response)
-  //     }
-
-  //     const data = await response.json();
-
-  //     return data;
-  //   } catch (e) {
-  //     return null;
-  //   }
-  // }
-
-  // const donate = async () => {
-  //   if(!donationInProgress) {
-  //     setDonationInProgress(true);
-  //     let chainId;
-  //     let tokenAddress;
-  //     console.log('selectedChain', selectedChain)
-  //     switch (selectedChain) {
-  //         case 'mainnet':
-  //           await switchToMainnet();
-  //           chainId = mainnet.id;
-  //           break;
-
-  //         case 'base':
-  //           console.log('in base case', selectedChain)
-  //           chainId = base.id;
-  //           await switchToBase();
-  //           break;
-
-  //         case 'optimism':
-  //           await switchToOptimism();
-  //           chainId = optimism.id;
-  //           break;
-
-  //         case 'arbitrum':
-  //           await switchToArbitrum();
-  //           chainId = arbitrum.id;
-  //           break;
-
-  //         case 'polygon':
-  //           await switchToPolygon();
-  //           chainId = polygon.id;
-  //           break;
-  //     }
-  //     // let amount = parseEther(amount.toString());
-
-  //     const txDetails = await getEndaomentTxDetails(chainId, parseEther(amount.toString()), tokenAddress)
-  //     txDetails.chainId = chainId;
-
-  //     sendDonationTx(txDetails);
-
-  //     console.log('tx details', txDetails)
-  //     setLogger(txDetails)
-  //   }
-  // }
-
-  // const sendDonationTx = async (details) => {
-  //   sendTransaction(
-  //     details,
-  //     {
-  //       onSuccess: async (hash) => {
-  //         const fid = context.user.fid ? context.user.fid : "";
-  //         const timestamp = Date.now();
-  //         await saveDonationReceipt(timestamp, fid, selectedChain, amount.toString());
-  //         setDonationInProgress(false);
-  //         setTxHash(hash);
-  //         setDonationMade(true);
-  //       },
-  //       onError: (error) => {
-  //         setDonationInProgress(false);
-  //       }
-  //     }
-  //   );
-  // };
+ 
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -273,6 +148,40 @@ export default function Demo(
       const context = await sdk.context;
       setContext(context);
       console.log('context', context);
+      
+      const fid = context?.user?.fid;
+      
+      if (fid) {
+        // Initialize socket connection
+        const newSocket = io("https://moviequest-production.up.railway.app", {
+          path: "/socket.io",
+          transports: ["websocket", "polling"],
+        });
+        
+        setSocket(newSocket);
+
+        newSocket.on("connect", () => {
+          console.log("✅ Connected to socket.io:", newSocket.id);
+        });
+
+        newSocket.on("call-for-help", (data) => {
+          const { fid: wsFid, message } = data;
+          console.log("🛎️ Received call-for-help:", wsFid, message);
+          if(wsFid == fid) {
+            console.log('message for this user');
+            const text = "🎬 Need help with this movie challenge! Anyone want to join?";
+            const embeds = ["https://cinema-quest-eosin.vercel.app/"];
+            sdk.actions.composeCast({ 
+              text,
+              embeds,
+            })
+          }
+        });
+
+        newSocket.on("disconnect", () => {
+          console.log("❌ Disconnected from socket.io");
+        });
+      }
 
       // Post FID to iframe
       const iframe = document.querySelector('iframe');
@@ -288,8 +197,7 @@ export default function Demo(
         }
       }
 
-      // ðŸ" Save to localStorage and MongoDB
-      const fid = context?.user?.fid;
+      // 📝 Save to localStorage and MongoDB
       const username = context?.user?.username;
 
       if (typeof window !== 'undefined' && fid && username) {
@@ -322,6 +230,9 @@ export default function Demo(
       load();
       return () => {
         sdk.removeAllListeners();
+        if (socket) {
+          socket.disconnect();
+        }
       };
     }
   }, [isSDKLoaded]);
